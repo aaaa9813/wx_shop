@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="css/style1.css" type="text/css" />
+
+
+		<script>
+                        window.onload = function () {
+
+                            for(var k = 0; k < 2; k++) {
+
+                                var sourceNode = document.getElementById("shop" + (k + 1)); // 获得被克隆的节点对象
+								if(sourceNode == null)
+								    continue;
+
+                                for (var i = 1; i < 4; i++) {
+                                    var clonedNode = sourceNode.cloneNode(true); // 克隆节点
+                                    clonedNode.setAttribute("id", "shop_" + k +"_" + i); // 修改一下id 值，避免id 重复
+                                    sourceNode.parentNode.appendChild(clonedNode); // 在父节点插入克隆的节点
+                                }
+                            }
+                        }
+		</script>
+	</head>
+	<body>
+		
+		<div id="zheng">
+			<div id="header">
+			<div><input style="width:90%;" border=""  type="text"><input type="submit"style="width:8%;" value="搜索"></div>
+			<div >
+			<div class="lunimg"><a href="#"><img src="" alt=""></a></div>
+			<div class="lunimg"><a href="#"><img src="" alt=""></a></div>
+			<div class="lunimg"><a href="#"><img src="" alt=""></a></div>
+			<div class="lunimg"><a href="#"><img src="" alt=""></a></div>
+			<div class="lunimg"><a href="#"><img src="" alt=""></a></div>
+			</div>
+			<div>
+			 <ul class="indexList">
+           <li class="indexOn">1</li>
+           <li>2</li>
+           <li>3</li>
+           <li>4</li>
+            <li>5</li>
+           </ul>
+        </div>	
+       </div>	
+		<div id="context">
+			<div class="kind">
+				<div id = "shop1" class="kind1"><a href="#"><img src="" alt=""></a><br>1111</div>
+
+		</div>
+			<div class="kind">
+				<div id = "shop2" class="kind1"><a href="#"><img src="" alt=""></a><br>2222</div>
+
+			</div>
+
+			<div class="action">
+	        <div class="action1"><a href="#"><img src="" alt=""></a></div>
+	        <div class="sousuo"><a href="#"><img src="" alt=""><input style="width:90%;" border=""  type="text"><input type="submit"style="width:8%;" value="搜索"></a></div>
+	        </div>
+	        <div class="shop">
+	        <div class="shop1"><a href="#"><img src="" alt=""></a><br>222</div>
+			<div class="shop1"><a href="#"><img src="" alt=""></a><br>1111</div>
+			<div class="shop1"><a href="#"><img src="" alt=""></a><br>1111</div>
+			<div class="shop1"><a href="#"><img src="" alt=""></a><br>1111</div>
+	      </div> 
+	     </div>
+	      <div id="botton">
+	        <div class="botton1"><a href="#">111111<img src="" alt=""></a><br></div>
+			<div class="botton1"><a href="#"><img src="" alt=""></a><br></div>
+			<div class="botton1"><a href="#"><img src="" alt=""></a><br></div>
+			<div class="botton1"><a href="#"><img src="" alt=""></a><br></div>
+			<div class="botton1"><a href="#"><img src="" alt=""></a><br></div>
+			</div>
+		</div>
+	      
+	</body>
+</html>

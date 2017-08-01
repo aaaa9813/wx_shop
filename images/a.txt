@@ -1,0 +1,32 @@
+
+Tutorial: Installing Scribe on Debian/Ubuntu
+
+Not really NoSQL related, but kind of.  A lot of people uses Scribe for processing large amount of events. Since I had some problems compiling it and since it’s not prepackaged I figured I’d post here how to do it.
+
+
+安装依赖环境
+sudo apt-get install libboost-dev libboost-test-dev libboost-program-options-dev libevent-dev automake libtool flex bison pkg-config g++ libssl-dev 
+
+编译It’s extremely important that you install the dependencies before starting!
+First you need to install thrift(depends on package: libevent-dev libglib2.0-dev automake libboost-dev libssl-dev) and fb303 (needed to communicate with Scribe):
+$ wget https://dist.apache.org/repos/dist/release/thrift/0.9.0/thrift-0.9.0.tar.gz $ tar -zxf thrift-0.9.0.tar.gz; cd thrift-0.9.0 $ ./configure CPPFLAGS="-DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H" $ make  $ sudo make install $ cd contrib/fb303 $ ./bootstrap.sh $ make $ sudo make install
+Then install scribe(depends on package: gawk libboost-system-dev libboost-filesystem-dev libtool):
+$ git clone git://github.com/facebook/scribe.git $ cd scribe $ ./bootstrap.sh $ ./configure CPPFLAGS="-DHAVE_INTTYPES_H -DHAVE_NETINET_IN_H -DBOOST_FILESYSTEM_VERSION=2" $ make
+Make failed while trying to link scribed, complaining about:
+file.cpp:(.text.startup+0x23): undefined reference to `boost::system::generic_category()' file.cpp:(.text.startup+0x2f): undefined reference to `boost::system::generic_category()' file.cpp:(.text.startup+0x3b): undefined reference to `boost::system::system_category()'
+The solution to this was to take the g++-row from just before the error:g++  -Wall -O3 -L/usr/lib  -lboost_system-mt -lboost_filesystem-mt -o scribed store.o store_queue.o conf.o file.o conn_pool.o scribe_server.o network_dynamic_config.o dynamic_bucket_updater.o  env_default.o  -L/usr/local/lib -L/usr/local/lib -L/usr/local/lib -lfb303 -lthrift -lthriftnb -levent -lpthread  libscribe.a libdynamicbucketupdater.a
+and change it a bit (move “-lboost_system-mt -lboost_filesystem-mt” to the back of the line), and run it manually in the src directory:
+$ cd src $ g++  -Wall -O3 -L/usr/lib  -o scribed store.o store_queue.o conf.o file.o conn_pool.o scribe_server.o network_dynamic_config.o dynamic_bucket_updater.o  env_default.o  -L/usr/local/lib -L/usr/local/lib -L/usr/local/lib -lfb303 -lthrift -lthriftnb -levent -lpthread  libscribe.a libdynamicbucketupdater.a -lboost_system-mt -lboost_filesystem-mt
+The “-DBOOST_FILESYSTEM_VERSION=2″ is only needed if you have libboost 1.46 or newer.
+Now you have a compiled scribed binary in that directory, either run it directly from there or run make install to install it globally.
+
+
+Here’s an example config file that just logs to ./logs:
+port=1463 max_msg_per_second=2000000 check_interval=3   <store>   category=default     type=file   fs_type=std   file_path=./logs/   base_filename=tmpdata   max_size=1000000000 </store>
+Put it in the scribe directory and name it to local.conf and run ./src/scribed local.conf to start scribe with it.
+ 
+ 安装THRIFT的PHP扩展（针对PHP而言）
+
+CD /PATH/TO/THRIFT-0.2.0/LIB/PHP/SRC/EXT/THRIFT_PROTOCOL;PHPIZE; ./CONFIGURE;MAKE ;MAKE INSTALL;
+
+修改PHP.INI，添加EXTENSION=THRIFT_PROTOCOL.SO

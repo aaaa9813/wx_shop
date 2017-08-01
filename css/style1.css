@@ -1,0 +1,102 @@
+body{
+	margin: auto;
+}
+#zheng{
+	width: 100%;
+	height:800px;
+	background-color: blue;
+}
+#header{
+	width:100%;
+	height:20%;
+	background-color: #000000;
+}
+img {
+    vertical-align: top;
+}
+.lunimg{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:90% ;
+}
+.ctrl{
+	text-align: center;
+    padding-top: 25px;
+}
+#context{
+	width:100%;
+	height:85%;
+	background-color:cadetblue;	
+}
+
+.kind{
+	width:100% ;
+	height:20%;
+	background-color:#F0FFFF;
+	padding-left: 5%;
+}
+.kind1{
+	 width:20% ;
+	 height:60% ;
+	 background-color:#7FFFD4;
+	 float: left;
+	 margin-top: 2%;
+	 margin-right: 3%;
+
+ }
+
+.kind2{
+	width:20% ;
+	height:60% ;
+	background-color:#ffffff;
+	float: left;
+	margin-top: 2%;
+	margin-right: 3%;
+}
+.action{
+	width:100% ;
+	height:30%;
+	background-color:#0000FF;
+}
+.action1{
+	width:100% ;
+	height:80%;
+	background-color:#0000FF;
+}
+.shop{
+	width:100% ;
+	height:30%;
+	background-color:#FF0000;
+	padding-left: 3%;
+
+}
+.shop1{
+	width:20% ;
+	height:55%;
+	background-color:#7FFFD4;
+	float: left;
+	margin-top:3%;
+	margin-right: 2%;
+}
+#botton{
+	width: 100%;
+	height: 10%;
+	background-color:#000000;
+	padding-left: 5%;
+}
+.botton1{
+	width: 13%;
+	height: 60%;
+	background-color:#FF0000;
+	float: left;
+    margin-top: 1%;
+	margin-right: 3%;
+}
+
+.box1,.box2,.box3,.box4{ width:400px; height:200px; margin:0 auto; border:1px solid #666}
+.kind1{background:url(http://192.168.247.251/11.jpg)}
+/*.box2{background:url(divcss5-logo.gif) no-repeat 10px center}*/
+/*.box3{background:url(divcss5-logo.gif) repeat-x 0 30px}*/
+/*.box4{background:url(divcss5-logo.gif) repeat-y center}*/

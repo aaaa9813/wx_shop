@@ -1,0 +1,82 @@
+@charset "utf-8";
+/* CSS Document */
+body,div { margin:0;padding:0; }
+#header {width:980px; height:643px; margin:0 auto;}
+#column1 {float:left; width:76px; height:643px; background-image:url(../images/index1_29.jpg)} 
+.col11 {float:left; width:70px;  margin-top:43px;}
+#column2 {float:left; width:847px; height:643px; background-image:url(../images/index1_25.jpg)}
+ 
+#column5 {float:left; width:57px; height:643px; background:url(../images/index1_07.jpg)}
+
+.text1
+{
+	FONT-SIZE: 24px; 
+	COLOR: #656565;
+	line-height:30px;	 
+	font-family:"Microsoft Yahei";
+	} 
+.text2
+{
+	FONT-SIZE: 24px; 
+	COLOR: #518dd1;
+	margin-left:19px;
+	line-height:30px;	 
+	font-family:"Microsoft Yahei";
+	} 
+.text3
+{
+	FONT-SIZE: 21px; 
+	COLOR: #656565;
+	line-height:26px;	 
+	font-family:"Microsoft Yahei";
+	}
+.text4
+{
+	FONT-SIZE: 21px; 
+	COLOR: #518dd1;
+	line-height:26px;	 
+	font-family:"Microsoft Yahei";
+}
+.text5
+{
+	FONT-SIZE: 18px; 
+	COLOR: #518dd1;
+	line-height:20px;	 
+	font-family:"Microsoft Yahei";
+}
+.text6
+{
+	FONT-SIZE: 21px; 
+	COLOR: #f01d2d;
+	line-height:26px;	 
+	font-family:"Microsoft Yahei";
+}
+
+a:link {
+	FONT-SIZE: 18px; 
+	COLOR: #518dd1;
+	line-height:20px;	 
+	font-family:"Microsoft Yahei";
+	text-decoration:none;
+}
+a:visited {
+	FONT-SIZE: 18px; 
+	COLOR: #518dd1;
+	line-height:20px;	 
+	font-family:"Microsoft Yahei";
+	text-decoration:none;
+}
+a:hover {
+	FONT-SIZE: 18px; 
+	COLOR: #518dd1;
+	line-height:20px;	 
+	font-family:"Microsoft Yahei";
+	text-decoration:underline;
+}
+a:active {
+	FONT-SIZE: 18px; 
+	COLOR: #518dd1;
+	line-height:20px;	 
+	font-family:"Microsoft Yahei";
+	text-decoration:none;
+}

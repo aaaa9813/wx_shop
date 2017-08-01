@@ -1,0 +1,129 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <script type="text/javascript" src="js/config.js"></script>
+    <script src="js/myjs.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.json.js"></script>
+    <script type="text/javascript" src="js/httppost.js"></script>
+    <script src="js/AES.js"></script>
+    <!--script src="sha256.js"></script-->
+    <!--script src="Base64.js"></script-->
+    <script src="js/url.js"></script>
+    <!--script src="pad-zeropadding-min.js"></script-->
+    <script src="js/pad-zeropadding.js"></script>
+    <!--script src="encrypt.js"></script-->
+    <!--script src="decrypt.js"></script-->
+    <script>
+
+        function jsencrypt(str){
+//            var key='1234567899876543';
+//            var iv=key;
+//            var result=CryptoJS.AES.encrypt(str,key,{iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.ZeroPadding});
+
+            var data = str;
+            var key = CryptoJS.enc.Latin1.parse(aes_key);
+            var iv = CryptoJS.enc.Latin1.parse(aes_iv);
+            //加密
+            var data = JSON.stringify(data);//将数据对象转换为json字符串
+            var encrypted = CryptoJS.AES.encrypt(data, key, {iv: iv, mode: CryptoJS.mode.CBC, padding: CryptoJS.pad.ZeroPadding});
+
+            var decryptedData = CryptoJS.AES.decrypt(encrypted, key, {iv:iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.ZeroPadding
+            });
+
+            alert('==14='+decryptedData);
+
+            var decryptedStr = decryptedData.toString(CryptoJS.enc.Utf8);
+            alert('==decrypted data=='+decryptedStr);
+
+
+            return encrypted;
+        }
+
+        function jsdecrypt(str){
+            var data = str;
+            var key = CryptoJS.enc.Latin1.parse(aes_key);
+            var iv = CryptoJS.enc.Latin1.parse(aes_iv);
+
+            var decryptedData = CryptoJS.AES.decrypt(data, key, {iv:iv,
+                mode: CryptoJS.mode.CBC,
+                padding: CryptoJS.pad.ZeroPadding
+            });
+            var result = decryptedData.toString(CryptoJS.enc.Utf8);
+
+           // var result=CryptoJS.AES.decrypt(str,key,{iv:iv,mode:CryptoJS.mode.CBC,padding:CryptoJS.pad.ZeroPadding}).toString(CryptoJS.enc.Utf8);//确定解密编码CryptoJS.enc.Utf8，必须与php编码一直不然乱码
+            return result;
+        }
+
+//       var ret11 = jsencrypt('qqq');
+//       alert('==jsencry==='+ret11);
+//        alert('==jsdecry==='+jsdecrypt(ret11));
+
+
+        
+        //引用自httppost.js
+        setCallfun(function () {
+
+            alert('==state=='+xhr.readyState);
+
+            switch (xhr.readyState) {
+                case 0 :
+                    //alert("请求未初始化");
+                    break;
+                case 1 :
+                    //alert("请求启动，尚未发送");
+                    break;
+                case 2 :
+                    //alert("请求发送，尚未得到响应");
+                    break;
+                case 3 :
+                    //alert("请求开始响应，收到部分数据"+xhr.responseText);
+                    break;
+                case 4 :
+
+                    if ((xhr.status >= 200 && xhr.status < 300) || xhr.status == 304) {
+                        var data = xhr.responseText;
+                        alert('==js ret==='+(data));
+                        alert('==js ret==='+jsdecrypt(data));
+                    } else {
+                        alert("Request was unsuccessful : " + xhr.status + " " + xhr.statusText);
+                        var data = xhr.responseText;
+                        alert('==js ret==='+jsdecrypt(data));
+                    }
+                    break;
+            }
+        });
+        // post请求
+         var fparam = {id:"101", name:"aaaa"};
+
+        var gamedata={funname:"login", funparam: fparam};
+
+        var strdata = JSON.stringify(gamedata);
+
+
+        //加密数据
+        strdata = jsencrypt(strdata);
+
+        alert('===11=='+strdata);
+        //strdata = AESEncrypt(strdata);
+
+        alert('===00=='+strdata);
+        //URL编码
+      var  urldata = urlencode(strdata);
+
+
+        var data = {name: "c/cb", pass: "123", gd:urldata};
+
+
+        alert('====01==='+ JSON.stringify(data));
+        //引用自httppost.js, cfg_url from config.js
+        postSend(cfg_url, data);
+
+    </script>
+</head>
+<body>
+</body>
+</html>

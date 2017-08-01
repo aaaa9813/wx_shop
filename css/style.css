@@ -1,0 +1,76 @@
+body{
+	margin: auto;	
+}
+#back{
+	width:100%;
+	height:800px;
+	background-color: red;
+}
+#header{
+	width:100%;
+	height:10%;
+	position:fixed;
+	
+	background-color: black;	
+	
+}
+#context{
+	width: 100%;
+	height:80%;
+	
+
+	background-color:azure;
+
+}
+#toop{
+	width: 100%;
+	height: 10%;
+	background-color:bisque;
+}
+.header1{
+	width: 10%;
+	height: 100%;
+	background-color: blue;
+	float: left;
+}
+.header2{
+	width: 80%;
+	height: 100%;
+	background-color: aqua;
+	float: left;
+}
+.header3{
+	width: 10%;
+	height: 100%;
+	background-color: blue;
+	float: left;
+}
+.context1{
+	width: 100%;
+	height: 33%;
+	padding-left: 2%;
+	background-color: aquamarine;
+}
+.context2{
+	width: 100%;
+	height: 33%;
+	padding-left: 2%;
+	background-color: #000000;
+}
+.context3{
+	width: 100%;
+	height: 33%;
+	padding-left: 2%;
+	background-color: #00FFFF;
+}
+.con{
+	width: 45%;
+	height:90%;
+	background-color:#FF0000;
+	float: left;
+	margin-top: 10px;
+	margin-right:5%;
+}
+a{
+	text-decoration: none;
+}
